@@ -1,0 +1,37 @@
+{
+    "url_base": "https://baloncestoenvivo.feb.es/partido/",
+    "url_num_inicial": 2341452,
+    "url_num_final": 2341487,
+    "url_num_final_real": 2341487,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
+    "output_headers": {
+
+        "partidos.csv": [
+            "id_partido", "nombre_local", "resultado_local", "nombre_visitante", "resultado_visitante",
+            "parciales_local", "parciales_visitante", "fecha_partido",
+            "arbitro1", "arbitro2", "arbitro3", "pista_partido", "direccion_partido"
+        ],
+
+        "player_stats.csv": [
+            "id_partido", "equipo", "titular", "dorsal", "nombre", "minutos", "puntos", 
+            "T2 encestados", "T2 totales", "% T2",
+            "T3 encestados", "T3 totales", "% T3",
+            "TC encestados", "TC totales", "% TC",
+            "TL encestados", "TL totales", "% TL",
+            "rebotes_ofensivos", "rebotes_defensivos", "rebotes_totales", "asistencias", 
+            "recuperaciones", "perdidas", "tapones_favor", "tapones_contra", "mates", 
+            "faltas_cometidas", "faltas_recibidas", "valoracion", "+/-"
+        ],
+
+        "estadisticas_total_equipo.csv": [
+            "id_partido", "equipo", "minutos", "puntos", 
+            "T2 encestados", "T2 totales", "% T2",
+            "T3 encestados", "T3 totales", "% T3",
+            "TC encestados", "TC totales", "% TC",
+            "TL encestados", "TL totales", "% TL",
+            "rebotes_ofensivos", "rebotes_defensivos", "rebotes_totales", "asistencias", 
+            "recuperaciones", "perdidas", "tapones_favor", "tapones_contra", "mates", 
+            "faltas_cometidas", "faltas_recibidas", "valoracion"
+        ]
+    }
+}
