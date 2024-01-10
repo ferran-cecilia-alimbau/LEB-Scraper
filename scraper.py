@@ -4,16 +4,16 @@ import logging
 import os
 
 from bs4 import BeautifulSoup
-from http_request import httpRequest
+from http_request import HTTPRequest
 from scraper_exceptions import HTTPRequestError, ParsingError
 
 
-class webScraper(httpRequest):
+class webScraper(HTTPRequest):
     def __init__(self, config_file, outputDir):
         with open(config_file) as f:
             self.config = json.load(f)
-
-        self.session = self.create_session(self.config["user_agent"])
+        
+        super().__init__(self.config["user_agent"])  # Llamada al constructor de la clase base
         self.outputHeaders = self.config.get("output_headers", {})
         self.outputDir = outputDir
 
@@ -41,13 +41,14 @@ class webScraper(httpRequest):
                     self.write_csv_rows(game_id, game_info, player_stats, team_stats, partidos_writer,
                                         player_stats_writer, team_stats_writer)
                     # time.sleep(1)  # Espera un segundo antes de realizar la siguiente solicitud
+                    logging.info(f"Partido {game_id} procesado correctamente")
                 except HTTPRequestError as e:
-                    logging.error(f"Error al procesar el partido {game_id}: {e}")
-                    print(f"Error al procesar el partido {game_id}: {e}")
+                    logging.error(f"Error en la solicitud HTTP para el partido {game_id}: {e}")
                 except ParsingError as e:
-                    logging.error(f"Error al analizar el contenido HTML del partido {game_id}: {e}")
-                    print(f"Error al analizar el contenido HTML del partido {game_id}: {e}")
-
+                    logging.error(f"Error al parsear la información para el partido {game_id}: {e}")
+                except Exception as e:
+                    logging.error(f"Error inesperado para el partido {game_id}: {e}")
+                    logging.error('Detalle del error:', exc_info=True)
             print("Estadísticas guardadas en player_stats.csv, partidos.csv y estadisticas_total_equipo.csv")
             logging.info("Programa finalizado con exito")
 
