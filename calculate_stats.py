@@ -11,9 +11,9 @@ spark = SparkSession.builder \
 spark.sparkContext.setLogLevel('ERROR')
 
 # Rutas de archivos
-pathEquipo = r'C:\Users\ferra\Desktop\LEB-Scraper\Output\estadisticas_total_equipo.csv'
-pathPartido = r'C:\Users\ferra\Desktop\LEB-Scraper\Output\partidos.csv'
-pathJugadores = r'C:\Users\ferra\Desktop\LEB-Scraper\Output\player_stats.csv'
+pathEquipo = r'C:\Users\ferra\LEB-Scraper\Output\estadisticas_total_equipo.csv'
+pathPartido = r'C:\Users\ferra\LEB-Scraper\Output\partidos.csv'
+pathJugadores = r'C:\Users\ferra\LEB-Scraper\Output\player_stats.csv'
 
 # Cargando DataFrames
 dfEquipo = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load(pathEquipo)
