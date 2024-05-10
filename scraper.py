@@ -136,8 +136,8 @@ class webScraper(HTTPRequest):
 
                         """ Extraemos el porcentaje, substituimos la coma por un punto y lo pasamos a float (con la coma no se puede convertir) """
                         pctRaw = intentados_pct.strip('%')
-                        pct = float(pctRaw.replace(',', '.'))
-                        player_stat_row.extend([encestados, intentados, pct])
+                        #pct = float(pctRaw.replace(',', '.'))
+                        player_stat_row.extend([encestados, intentados, pctRaw])
                     else:
                         # Ponemos el replace porque hay nombres de jugadores que contienen tilde en vez de comilla (EJ: Lucas N'Guessan)
                         player_stat_row.append(cell.text.strip().replace("´", "'"))
@@ -147,7 +147,7 @@ class webScraper(HTTPRequest):
 
         return player_stats
 
-    def extract_team_stats(self, soup):
+    def extract_team_stats(self, soup): #TODO: Cambiar el TR que se lee por el bueno, para que no salgan las estadísticas del Melilla con minutos de menos
         team_stats = []
 
         local = soup.find(class_="columna equipo local")
@@ -176,8 +176,8 @@ class webScraper(HTTPRequest):
                       y lo pasamos a float (con la coma no se puede convertir) """
 
                     pct_raw = intentados_pct.strip('%')
-                    pct = float(pct_raw.replace(',', '.'))
-                    team_stat_row.extend([encestados, intentados, pct])
+                    #pct = float(pct_raw.replace(',', '.'))
+                    team_stat_row.extend([encestados, intentados, pct_raw])
                 else:
                     team_stat_row.append(cell.text.strip())
 
